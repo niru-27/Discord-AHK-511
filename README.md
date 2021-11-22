@@ -1,8 +1,13 @@
 # Discord-AHK-511
 Download AutoHotkey https://www.autohotkey.com/
+
 Install
+
 Download the .ahk script file
+
 Double click it to run
+
+===========================================================
 
 When Discord window is active, the following functions will be available:
 
