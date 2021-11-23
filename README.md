@@ -1,25 +1,30 @@
 # Discord-AHK-511
-Download AutoHotkey https://www.autohotkey.com/
+1. Download AutoHotkey https://www.autohotkey.com/
 
-Install
+2. Install
 
-Download the .ahk script file
+3. Download the .ahk script file
 
-Double click it to run
+4. Double click it to run
 
 ===========================================================
 
 When Discord window is active, the following functions will be available:
 
-When posting Flight Plan, instead of pressing Enter, press Ctrl+Enter
+When posting Flight Plan, instead of pressing Enter, press `Ctrl+Enter`
 
-Ctrl+Enter: Inserts auto time conversion when filing Flight Plan & posts it
+`Ctrl + Enter` : Inserts auto time conversion from your local time, when filing Flight Plan & posts it
 
+`Ctrl + E` : Convert local time in YYYY MM DD HH MM format to Discord timestamp
+`2021-11-23 23:45` becomes `~~2021-11-23 23:45~~ <t:1637691300> [<t:1637691300:R>]`
 
-Ctrl+T: FP template
+`Ctrl + W` : Convert local time in YYYY MM DD HH MM format to EST
+`2021-11-23 23:45` becomes `~~2021-11-23 23:45~~ 2021-11-23 13:15`
 
-Ctrl+D: FP template (Deployment)
+`Ctrl + T` : FP template
 
-Ctrl+R: AAR template
+`Ctrl + D` : FP template (Deployment)
 
-Double Right Click over image: open full resolution in browser
+`Ctrl + R` : AAR template
+
+`Double Right Click over image` : open full resolution in browser
