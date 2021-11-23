@@ -21,3 +21,5 @@ Ctrl+T: FP template
 Ctrl+D: FP template (Deployment)
 
 Ctrl+R: AAR template
+
+Double Right Click over image: open full resolution in browser
