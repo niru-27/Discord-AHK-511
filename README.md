@@ -7,13 +7,13 @@
 
 4. Double click it to run
 
-===========================================================
+---
 
 When Discord window is active, the following functions will be available:
 
 When posting Flight Plan, instead of pressing Enter, press `Ctrl+Enter`
 
-`Ctrl + Enter` : Inserts auto time conversion from your local time, when filing Flight Plan & posts it
+`Ctrl + Enter` : Inserts auto time conversion from **your** local time, when filing Flight Plan & posts it
 
 `Ctrl + E` : Convert local time in YYYY MM DD HH MM format to Discord timestamp
 `2021-11-23 23:45` becomes `~~2021-11-23 23:45~~ <t:1637691300> [<t:1637691300:R>]`
