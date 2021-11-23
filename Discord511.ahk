@@ -1,4 +1,4 @@
-﻿#NoEnv  ; Recommended for performance and compatibility with future AutoHotkey releases.
+#NoEnv  ; Recommended for performance and compatibility with future AutoHotkey releases.
 ; #Warn  ; Enable warnings to assist with detecting common errors.
 SendMode Input  ; Recommended for new scripts due to its superior speed and reliability.
 SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
@@ -7,12 +7,12 @@ SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 ;=========================================================
 #IfWinActive, ahk_exe Discord.exe
 
-^Enter::			;Add Unix timestamp for Discord
+^Enter::						;Add Unix timestamp for Discord//Flight plans
 	found:=0
 	
-	ClipSave:=ClipboardAll ; store current clipboard
+	ClipSave:=ClipboardAll 		; store current clipboard
 	Send ^a
-	Sleep, 100
+	; Sleep, 100
 	Send ^x
 	Sleep, 100
 	
@@ -56,9 +56,6 @@ SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 		
 		Ts=%YYYY%%MM%%DD%%tod%00
 		Ts := Time_human2unix(Ts)
-		;Clipboard=<t:%Ts%>
-		;Send {Right}
-		;Send {End} <t:%Ts%>
 		
 		;MsgBox,	%YYYY%-%MM%-%DD%  %tod%`n`n%Ts%
 		
@@ -107,9 +104,6 @@ SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 		
 		Ts=%YYYY%%MM%%DD%%tod%00
 		Ts := Time_human2unix(Ts)
-		;Clipboard=<t:%Ts%>
-		;Send {Right}
-		;Send {End} <t:%Ts%>
 		
 		;MsgBox,	%YYYY%-%MM%-%DD%  %tod%`n`n%Ts%
 		
@@ -134,9 +128,7 @@ SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 		else
 			Ts=%YYYY%%MM%%DD%%tod%
 		Ts := Time_human2unix(Ts)
-		;Clipboard=<t:%Ts%>
-		;Send {Right}
-		;Send {End} <t:%Ts%>
+		
 		MsgBox,	%YYYY%-%MM%-%DD%  %tod%`n`n%Ts%
 		
 		rep=~~%tod%~~ <t:%Ts%> [<t:%Ts%:R>]
@@ -157,14 +149,14 @@ SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 		Send {Enter}
 	}
 	
-	Clipboard:=ClipSave 	; restore old clipboard content
-	ClipSave:="" 			; clear variable
+	Clipboard:=ClipSave 		; restore old clipboard content
+	ClipSave:="" 				; clear variable
 return
 ;=========================================================
-^e::			;Convert local to Unix
+^e::							;Convert local YYYY MM DD HH MM to Unix
 	found:=0
 	
-	ClipSave:=ClipboardAll ; store current clipboard
+	ClipSave:=ClipboardAll 		; store current clipboard
 	Send ^x
 	Sleep, 100
 	
@@ -209,7 +201,7 @@ return
 	ClipSave:="" 			; clear variable
 return
 ;=========================================================
-^w::			;Convert local to EST
+^w::						;Convert local YYYY MM DD HH MM to EST//Set offset in Time_2EST()
 	found:=0
 	
 	ClipSave:=ClipboardAll ; store current clipboard
@@ -232,7 +224,7 @@ return
 		else
 			Ts=%YYYY%%MM%%DD%%tod%
 
-		Ts := Time_human2unixEST(Ts)
+		Ts := Time_2EST(Ts)
 		Ts := Time_unix2human(Ts)
 		;Clipboard=<t:%Ts%>
 		;Send {Right}
@@ -298,7 +290,7 @@ NET ID/TACAN: "
 return
 
 ;=========================================================
-^r::	; AAR TEMPLATE
+^r::						; AAR TEMPLATE
 	ClipSave:=ClipboardAll ; store current clipboard
 Clipboard:=
 (
@@ -312,6 +304,32 @@ REMARKS: "
 )
 	Send ^v
 return
+;=========================================================
+
+Rbutton::					;Double click RMB to open image in browser [full resolution]
+	MouseGetPos, x, y
+	;MsgBox, %y%
+	keywait, Rbutton, t0.350
+	if errorlevel = 1
+	{
+		;msgbox hold
+		return
+	}
+	else
+		keywait, Rbutton, d, t0.350
+	if (errorlevel = 0 && y>22)
+	{
+		;msgbox double
+		MouseClick,R
+		Sleep,100
+		Send {Up}{Enter}
+		return
+	}
+	else {
+		MouseClick,R		; add this line when you want to RClick after action
+		;msgbox nothing
+		return
+	}
 
 ;=========================================================
 
@@ -359,7 +377,7 @@ Time_human2unix(time)			;2UNIX
     return time
 }
 
-Time_human2unixEST(time)			;2UNIX
+Time_2EST(time)			;2UNIX
 {
 
     time-=19700101000000,Seconds
